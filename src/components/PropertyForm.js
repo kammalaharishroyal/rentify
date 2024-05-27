@@ -5,17 +5,17 @@ import './PropertyForm.css';
 function PropertyForm({ onClose, onAddProperty }) {
   const[propertyreturnResult,setPropertyreturnResult]=useState("")
   const [property, setProperty] = useState({
-    location: '',
-    size: '',
-    layout: '',
-    outdoorSpace: '',
-    views: '',
-    parking: '',
-    amenities: '',
-    schoolDistrict: '',
-    safetyAndSecurity: '',
-    energyEfficiency: '',
-    hoa: ''
+    location: 'banglore',
+    size: '25-5',
+    layout: 'layout',
+    outdoorSpace: '10-5',
+    views: '23',
+    parking: 'Available',
+    amenities: 'yes',
+    schoolDistrict: '2km',
+    safetyAndSecurity: 'MoreSecured',
+    energyEfficiency: '24*7',
+    hoa: 'yess'
   });
 
   const handleChange = (e) => {

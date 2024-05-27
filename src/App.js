@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />}/>
           
-          <Route path="/property/1" element={<PropertyDetails/>} />
+          <Route path="/property/:id" element={<PropertyDetails/>} />
 
         </Route>
       </Routes>

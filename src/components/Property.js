@@ -10,6 +10,7 @@ function Property({ property }) {
       <div className="property-details">
         <p><strong>Location:</strong> {property.location}</p>
         <p><strong>Parking:</strong> {property.parking}</p>
+        
       </div>
       
       <Link to={`/property/${1}`} className="interested-button">I'm Interested</Link>
