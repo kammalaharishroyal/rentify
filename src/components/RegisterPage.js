@@ -1,55 +1,100 @@
-// src/components/RegisterPage.js
-
-import React from 'react';
+// src/RegisterPage.js
+import React, { useState } from 'react';
+import axios from 'axios';
 import './RegisterPage.css';
 
-function RegisterPage() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      mobile: data.get('mobile'),
-      password: data.get('password'),
+const RegisterPage = () => {
+  const[propertyreturnResult,setPropertyreturnResult]=useState("")
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        mobile: '',
+        password: ''
     });
-  };
-  
 
-  return (
-    <div className="register-container">
-     
-      <form onSubmit={handleSubmit} className="register-form">
-        
-        <div className="form-group">
-        <h1>Sign Up</h1>
-          <label htmlFor="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" required />
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8080/register', formData);
+            console.log('Registration successful:', response.data);
+            setPropertyreturnResult(response.data)
+        } catch (error) {
+            console.error('Error registering:', error);
+            setPropertyreturnResult(error)
+        }
+    };
+
+    return (
+        <div className="container">
+            <div className="form-wrapper">
+                <h2>Register</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>First Name:</label>
+                        <input
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Last Name:</label>
+                        <input
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Mobile:</label>
+                        <input
+                            type="tel"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password:</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+                {propertyreturnResult&&propertyreturnResult}
+            </div>
+            
         </div>
-        <div className="form-group">
-          <label htmlFor="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email Address</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="mobile">Mobile Number</label>
-          <input type="tel" id="mobile" name="mobile" required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <button type="submit" className="submit-button">Sign Up</button>
-        <p className="signin-link">
-          Already have an account? <a href="/login">Sign In</a>
-        </p>
-      </form>
-    </div>
-  );
-}
+    );
+};
 
 export default RegisterPage;

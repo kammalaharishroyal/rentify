@@ -1,37 +1,67 @@
-// src/components/LoginPage.js
-
-import React from 'react';
+// src/LoginPage.js
+import React, { useState } from 'react';
+import axios from 'axios';
 import './LoginPage.css';
 
-function LoginPage() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+const LoginPage = () => {
+  const[Resp,setResp]=useState("");
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
     });
-  };
 
-  return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h1>Sign In</h1>
-        <div className="form-group">
-          <label htmlFor="email">Email Address</label>
-          <input type="email" id="email" name="email" required />
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8080/user', formData);
+            console.log('Login successful:', response.data);
+            setResp(response.data)
+        } catch (error) {
+            console.error('Error logging in:', error);
+            setResp(error)
+        }
+    };
+
+    return (
+        <div className="container">
+            <div className="form-wrapper">
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Email ID:</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password:</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                {Resp&&Resp}
+            </div>
+            
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <button type="submit" className="submit-button">Sign In</button>
-        <p className="signup-link">
-          Don't have an account? <a href="/register">Sign Up</a>
-        </p>
-      </form>
-    </div>
-  );
-}
+    );
+};
 
 export default LoginPage;
