@@ -1,0 +1,12 @@
+/* src/components/PropertyItem.css */
+
+.property-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .property-item h4 {
+    margin-top: 0;
+  }
+  
+  

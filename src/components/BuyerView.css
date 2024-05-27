@@ -1,0 +1,14 @@
+/* src/components/BuyerView.css */
+
+.buyer-view {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .buyer-view h2 {
+    margin-top: 0;
+  }
+  
+  

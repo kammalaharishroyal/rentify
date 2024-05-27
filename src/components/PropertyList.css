@@ -1,0 +1,13 @@
+/* src/components/PropertyList.css */
+
+.property-list {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .property-list h3 {
+    margin-top: 0;
+  }
+  
+  

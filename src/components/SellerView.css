@@ -1,0 +1,17 @@
+/* src/components/SellerView.css */
+
+.seller-view {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .seller-view h2 {
+    margin-top: 0;
+  }
+  
+  .sellerList
+  {
+    display: flex;
+  }
