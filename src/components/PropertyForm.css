@@ -1,7 +1,7 @@
 /* PropertyForm.css */
 
 .property-form-container {
-  max-width: 600px;
+  width: 800px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
