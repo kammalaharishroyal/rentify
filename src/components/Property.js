@@ -4,6 +4,7 @@ import './Property.css';
 import img from '../Images/p1.jpeg';
 import { Link } from 'react-router-dom';
 function Property({ property }) {
+  
   return (
     <div className="property">
       <img src={img} alt="Property" className="property-image" />

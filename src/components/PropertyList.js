@@ -16,11 +16,19 @@ function PropertyList() {
       });
   }, []);
   console.log("properties",properties);
+  const property={
+    location:"banglore",
+    parking:"availble"
+
+  }
   return (
     <div className="property-list">
       <h3>Properties</h3>
     
       <div className='propertList'>
+        <Property property={property}/>
+        <Property property={property}/>
+        <Property property={property}/>
       
       {
         properties.map(x=><Property property={x}/>)
