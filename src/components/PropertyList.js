@@ -32,6 +32,9 @@ function PropertyList() {
         <Property property={property}/>
         <Property property={property}/>
         <Property property={property}/>
+        <Property property={property}/>
+        <Property property={property}/>
+        
       
       {
         properties.map(x=><Property property={x}/>)
